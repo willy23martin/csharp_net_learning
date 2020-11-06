@@ -6,6 +6,6 @@ namespace csharp_console_app
 {
     interface ICall
     {
-        string VoiceCallContact();
+        public string VoiceCallContact();
     }
 }

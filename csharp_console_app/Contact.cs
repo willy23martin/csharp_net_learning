@@ -6,12 +6,12 @@ namespace csharp_console_app
 {
     class Contact : ICall
     {
-        public string telemarketing_id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public StructA position { get; set; }
-        public string VoiceCallContact()
+        public virtual string VoiceCallContact()
         {
-            return $"Calling contact: {telemarketing_id}";
+            return $"Calling contact: {id}";
         }
     }
 }
