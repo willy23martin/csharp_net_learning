@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Numerics;
+using System.Reflection;
 
 namespace csharp_console_app
 {
@@ -20,6 +21,13 @@ namespace csharp_console_app
             ExtensionMethods();
             Linq();
             BigProcessesAsyncAwait();
+            Reflection();
+        }
+
+        private static void Reflection()
+        {
+            ReflectionTest reflectionTest = new ReflectionTest();
+            reflectionTest.Test();
         }
 
         private static void BigProcessesAsyncAwait()

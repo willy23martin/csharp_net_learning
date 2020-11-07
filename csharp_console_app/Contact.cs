@@ -4,6 +4,7 @@ using System.Text;
 
 namespace csharp_console_app
 {
+    [Custom(WrapUp = "No Localized Yet")]  // Activator for Reflection.
     class Contact : ICall
     {
         public string id { get; set; }
