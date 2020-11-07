@@ -8,7 +8,7 @@ using System.Text;
 namespace csharp_console_app
 {
     // C# Generics:
-    class ContactList<T>
+    class ContactList<T> where T : Contact // class, new()
     {
         public HashSet<T> contacts = new HashSet<T>();
 
