@@ -12,6 +12,8 @@ namespace csharp_console_app
     {
         public HashSet<T> contacts = new HashSet<T>();
 
+        public string Name { get; set; }
+
         public void Insert(T contact)
         {
             if(contact != null)

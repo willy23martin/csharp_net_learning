@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Numerics;
 
 namespace csharp_console_app
@@ -18,6 +19,13 @@ namespace csharp_console_app
             GenericCollections();
             ExtensionMethods();
             Linq();
+            BigProcessesAsyncAwait();
+        }
+
+        private static void BigProcessesAsyncAwait()
+        {
+            BigProcessesAsyncAwait bigProcessesAsyncAwait = new BigProcessesAsyncAwait();
+            bigProcessesAsyncAwait.Test();
         }
 
         static void Linq()
