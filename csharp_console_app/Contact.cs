@@ -9,6 +9,9 @@ namespace csharp_console_app
         public string id { get; set; }
         public string name { get; set; }
         public StructA position { get; set; }
+
+        public List<CellPhone> CellPhones { get; set; }
+
         public virtual string VoiceCallContact()
         {
             return $"Calling contact: {id}";

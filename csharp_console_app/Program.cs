@@ -17,6 +17,13 @@ namespace csharp_console_app
             GenericsT();
             GenericCollections();
             ExtensionMethods();
+            Linq();
+        }
+
+        static void Linq()
+        {
+            Linq linq = new Linq();
+            linq.Test();
         }
 
         static void ExtensionMethods()
