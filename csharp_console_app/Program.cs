@@ -11,6 +11,56 @@ namespace csharp_console_app
             Classes();
             Inheritance();
             SystemObjectMethodsOverriding();
+            GenericsT();
+        }
+
+        static void GenericsT()
+        {
+
+            ContactList<Contact> contactList = new ContactList<Contact>();
+
+            Contact contactA = new Contact();
+            contactA.id = "90998989";
+            contactA.name = "Name A";
+            contactA.position = new StructA(1, 1);
+
+            Contact contactB = new Contact();
+            contactB.id = "10989";
+            contactB.name = "Name B";
+            contactB.position = new StructA(1, 2);
+
+            contactList.Insert(contactA);
+            contactList.Insert(contactB);
+
+            Console.WriteLine($"ContactList: \n {contactList}");
+
+            Console.WriteLine($"ContactA was finded? {contactList.getContactInformation("90998989")}");
+            Console.WriteLine($"ContactB was finded? {contactList.getContactInformation("10989")}");
+            Console.WriteLine($"Undefined Contact was finded? {contactList.getContactInformation("09")}");
+
+            Console.ReadKey();
+
+            ContactList<TelemarketingContact> telemarketingContactList = new ContactList<TelemarketingContact>();
+
+            Contact contactC = new TelemarketingContact();
+            contactC.id = "908";
+            contactC.name = "Name A";
+            contactC.position = new StructA(1, 1);
+
+            Contact contactD = new TelemarketingContact();
+            contactD.id = "909";
+            contactD.name = "Name D";
+            contactD.position = new StructA(1, 1);
+
+            telemarketingContactList.Insert((TelemarketingContact)contactC);
+            telemarketingContactList.Insert((TelemarketingContact)contactD);
+
+            Console.WriteLine($"ContactList: \n {telemarketingContactList}");
+
+            Console.WriteLine($"ContactA was finded? {telemarketingContactList.getContactInformation("908")}");
+            Console.WriteLine($"ContactB was finded? {telemarketingContactList.getContactInformation("909")}");
+
+            Console.ReadKey();
         }
 
         static void SystemObjectMethodsOverriding()
