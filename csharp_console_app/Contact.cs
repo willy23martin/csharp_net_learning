@@ -12,8 +12,16 @@ namespace csharp_console_app
 
         public List<CellPhone> CellPhones { get; set; }
 
+        public int NumberOfVoiceCalls { get; set; }
+
+        public Contact()
+        {
+            NumberOfVoiceCalls = 0;
+        }
+
         public virtual string VoiceCallContact()
         {
+            NumberOfVoiceCalls += 1;
             return $"Calling contact: {id}";
         }
 
@@ -27,7 +35,7 @@ namespace csharp_console_app
 
         public override string ToString()
         {
-            return $"Contact Id: {id} - Name: {name} - Position: {position.ToString()}";
+            return $"Contact Id: {id} - Name: {name} - Position: {position}";
         }
 
         // Always are different in the memory stack.

@@ -56,6 +56,72 @@ namespace csharp_console_app
             LinqLastTest(contactList);
             LinqTakeTest(contactList);
             LinqSkipTest(contactList);
+
+            LinqOrderByTest(contactList);
+            LinqGroupByTest(contactList);
+            LinqOfTypeTest();
+
+        }
+
+        private void LinqOfTypeTest()
+        {
+            Console.WriteLine("Linq OfType Test...");
+            ContactList<Contact> contactList = new ContactList<Contact>();
+            Contact contact = new Contact();
+            contact.id = "10989";
+            contact.name = "WMC";
+            contact.position = new StructA(1, 1);
+            contactList.contacts.Add(contact);
+            Contact contactB = new Contact();
+            contactB.id = "989";
+            contactB.name = "WMC II";
+            contactB.position = new StructA(1, 2);
+            contactList.contacts.Add(contactB);
+
+            List<NoLocalizedContact> noLocalizedContacts = contactList.contacts.OfType<NoLocalizedContact>().ToList();
+            foreach (NoLocalizedContact noLocalizedContact in noLocalizedContacts)
+            {
+                Console.WriteLine($"Contact of type TelemarketingContact: ${noLocalizedContact}");
+            }
+
+            Console.WriteLine("\n");
+            Console.ReadKey();
+
+        }
+
+        private void LinqGroupByTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq GroupBy Test...");
+            OutboundCampaign outboundCampaign = new OutboundCampaign();
+            outboundCampaign.outboundContactList = contactList;
+            outboundCampaign.Test();
+
+            Dictionary<int, IGrouping<int, TelemarketingContact>> contactListGroupedByNumberOfCalls = outboundCampaign.outboundContactList.contacts.OrderByDescending(contact => contact.id).GroupBy(contact => contact.NumberOfVoiceCalls).ToDictionary(contact => contact.Key);
+            foreach (IGrouping<int, TelemarketingContact> groupsOfContacts in contactListGroupedByNumberOfCalls.Values)
+            {
+                foreach (TelemarketingContact telemarketingContact in groupsOfContacts.Take(3))
+                {
+                    Console.WriteLine($"Contact grouped by {groupsOfContacts.Key} - {telemarketingContact} \n");
+                }
+            }
+            Console.WriteLine("\n");
+            Console.ReadKey();
+        }
+
+        private void LinqOrderByTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq OrderBy Test...");
+            OutboundCampaign outboundCampaign = new OutboundCampaign();
+            outboundCampaign.outboundContactList = contactList;
+            outboundCampaign.Test();
+
+            List<TelemarketingContact> contactListOrderedById = outboundCampaign.outboundContactList.contacts.OrderByDescending(contact => contact.id).ToList();
+            foreach (TelemarketingContact contactOrderedById in contactListOrderedById)
+            {
+                Console.WriteLine($"Contact ordered by Id {contactOrderedById}");
+            }
+            Console.WriteLine("\n");
+            Console.ReadKey();
         }
 
         private void LinqWhereTest(ContactList<TelemarketingContact> contactList)
@@ -66,6 +132,7 @@ namespace csharp_console_app
             {
                 Console.WriteLine($"Telemarketing Contact: {contact}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -77,6 +144,7 @@ namespace csharp_console_app
             {
                 Console.WriteLine($"Telemarketing Contact Definition: {contactDefinition}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -88,6 +156,7 @@ namespace csharp_console_app
             {
                 Console.WriteLine($"Telemarketing Contact's cellphone: {cellphone}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -96,6 +165,7 @@ namespace csharp_console_app
             Console.WriteLine("Linq Any Test...");
             bool existId = contactList.contacts.Any(contact => contact.id.Contains("7"));
             Console.WriteLine($"Exist any contact with Telemarketing Id with 7?: {existId}");
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -103,10 +173,11 @@ namespace csharp_console_app
         {
             Console.WriteLine("Linq First Test...");
             TelemarketingContact firstContact = contactList.contacts.First(contact => contact.name.Contains("A"));
-            if(firstContact != null)
+            if (firstContact != null)
             {
                 Console.WriteLine($"Telemarketing First Contact: {firstContact}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -118,6 +189,7 @@ namespace csharp_console_app
             {
                 Console.WriteLine($"Telemarketing Last Contact: {lastContact}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
 
@@ -140,6 +212,7 @@ namespace csharp_console_app
             {
                 Console.WriteLine($"Telemarketing Contact Taken: {contact}");
             }
+            Console.WriteLine("\n");
             Console.ReadKey();
         }
     }
