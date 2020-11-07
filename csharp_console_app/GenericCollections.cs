@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace csharp_console_app
@@ -10,6 +11,16 @@ namespace csharp_console_app
         public void Test()
         {
             // To prevent boxing-unboxing computational costs.
+
+            TestList();
+            TestStack();
+            TestQueue();
+            TestDictionary();
+
+        }
+
+        private void TestList()
+        {
             Console.WriteLine($"Generic List ...");
             List<int> genericList = new List<int>();
             genericList.AddRange(new int[] { 10, 20, 30 });
@@ -19,7 +30,10 @@ namespace csharp_console_app
                 Console.WriteLine(number);
             }
             Console.ReadKey();
+        }
 
+        private void TestStack()
+        {
             Console.WriteLine($"Generic Stack ...");
             Stack<string> genericStack = new Stack<string>();
             genericStack.Push("A");
@@ -31,7 +45,10 @@ namespace csharp_console_app
             Console.WriteLine(genericStack.Pop());
             Console.WriteLine(genericStack.Pop());
             Console.ReadKey();
+        }
 
+        private void TestQueue()
+        {
             Console.WriteLine($"Generic Queue ...");
             Queue<string> genericQueue = new Queue<string>();
             genericQueue.Enqueue("A");
@@ -42,6 +59,26 @@ namespace csharp_console_app
             Console.WriteLine(genericQueue.Dequeue());
             Console.WriteLine(genericQueue.Dequeue());
             Console.WriteLine(genericQueue.Dequeue());
+            Console.ReadKey();
+        }
+
+        private void TestDictionary()
+        {
+            Console.WriteLine($"Generic Dictionary ...");
+
+            Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
+            contactList.Add("90", new Contact() { id = "90", name = "Name A", position = new StructA(1, 1) });
+            contactList.Add("91", new Contact() { id = "91", name = "Name B", position = new StructA(1, 2) });
+            contactList.Add("92", new TelemarketingContact() { telemarketing_id = "0092", id = "92", name = "Name C", position = new StructA(1, 3) });
+            contactList.Add("93", new NoLocalizedContact() { id = "93", name = "Name D", position = new StructA(1, 4) });
+
+            Console.WriteLine($"Contains contact with id 90? {contactList.ContainsKey("90")}");
+            Contact toLookupContact = null;
+            Console.WriteLine($"Contains contact with id 91 secure way? {contactList.TryGetValue("91", out toLookupContact)}");
+            foreach(Contact contact in contactList.Values)
+            {
+                Console.WriteLine($"Contact in ContactList: {contact}");
+            }    
             Console.ReadKey();
         }
 
