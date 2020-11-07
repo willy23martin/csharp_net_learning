@@ -10,8 +10,16 @@ namespace csharp_console_app
             Declarations();
             Classes();
             Inheritance();
-            
+            SystemObjectMethodsOverriding();
+        }
 
+        static void SystemObjectMethodsOverriding()
+        {
+            Contact contactA = new Contact();
+            contactA.id = "90998989";
+            contactA.name = "Name A";
+            contactA.position = new StructA(2, 1);
+            Console.WriteLine(contactA);
         }
 
         static void Classes()
@@ -53,17 +61,21 @@ namespace csharp_console_app
             // Logical operators: && ||
 
             // Conditionals:
-            if (number==0)
+            if (number == 0)
             {
 
-            }else if (number > 0){       
+            }
+            else if (number > 0)
+            {
 
-            } else {
+            }
+            else
+            {
 
             }
 
             // Loops:
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
 
             }
@@ -73,8 +85,8 @@ namespace csharp_console_app
                 number++;
             }
 
-            int[] numbers = {1,2,3,5 };
-            foreach(int num in numbers)
+            int[] numbers = { 1, 2, 3, 5 };
+            foreach (int num in numbers)
             {
                 Console.WriteLine(num);
             }

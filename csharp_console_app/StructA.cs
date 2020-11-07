@@ -14,5 +14,10 @@ namespace csharp_console_app
             Column = column;
         }
 
+        public override string ToString()
+        {
+            return $"Row: {Row} && Column: {Column}";
+        }
+
     }
 }
