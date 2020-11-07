@@ -16,6 +16,13 @@ namespace csharp_console_app
             SystemObjectMethodsOverriding();
             GenericsT();
             GenericCollections();
+            ExtensionMethods();
+        }
+
+        static void ExtensionMethods()
+        {
+            ExtensionMethods extensionMethods = new ExtensionMethods();
+            extensionMethods.Test();
         }
 
         static void GenericCollections()

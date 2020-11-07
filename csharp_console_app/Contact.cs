@@ -14,6 +14,7 @@ namespace csharp_console_app
             return $"Calling contact: {id}";
         }
 
+    
         // System.Object (Equals, ToString, GetHash):
         public override bool Equals(object obj)
         {
