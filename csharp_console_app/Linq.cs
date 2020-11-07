@@ -16,7 +16,7 @@ namespace csharp_console_app
             contactA.telemarketing_id = contactA.id;
             contactA.name = "Name A";
             contactA.position = new StructA(1, 1);
-            contactA.CellPhones = new List<CellPhone>() { 
+            contactA.CellPhones = new List<CellPhone>() {
                 new CellPhone() { Provider= "ProviderA", Number="313"},
                 new CellPhone() { Provider= "ProviderB", Number="314"},
                 new CellPhone() { Provider= "ProviderA", Number="315"}
@@ -52,13 +52,17 @@ namespace csharp_console_app
             LinqSelectTest(contactList);
             LinqSelectManyTest(contactList);
             LinqAnyTest(contactList);
+            LinqFirstTest(contactList);
+            LinqLastTest(contactList);
+            LinqTakeTest(contactList);
+            LinqSkipTest(contactList);
         }
 
         private void LinqWhereTest(ContactList<TelemarketingContact> contactList)
         {
             Console.WriteLine("Linq Where Test...");
             var contacts = contactList.contacts.Where(contact => contact.telemarketing_id.Contains("9"));
-            foreach(TelemarketingContact contact in contacts)
+            foreach (TelemarketingContact contact in contacts)
             {
                 Console.WriteLine($"Telemarketing Contact: {contact}");
             }
@@ -92,6 +96,50 @@ namespace csharp_console_app
             Console.WriteLine("Linq Any Test...");
             bool existId = contactList.contacts.Any(contact => contact.id.Contains("7"));
             Console.WriteLine($"Exist any contact with Telemarketing Id with 7?: {existId}");
+            Console.ReadKey();
+        }
+
+        private void LinqFirstTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq First Test...");
+            TelemarketingContact firstContact = contactList.contacts.First(contact => contact.name.Contains("A"));
+            if(firstContact != null)
+            {
+                Console.WriteLine($"Telemarketing First Contact: {firstContact}");
+            }
+            Console.ReadKey();
+        }
+
+        private void LinqLastTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq Last Test...");
+            TelemarketingContact lastContact = contactList.contacts.Last(contact => contact.name.Contains("Name"));
+            if (lastContact != null)
+            {
+                Console.WriteLine($"Telemarketing Last Contact: {lastContact}");
+            }
+            Console.ReadKey();
+        }
+
+        private void LinqTakeTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq Take Test...");
+            List<TelemarketingContact> contactsTaken = contactList.contacts.Take(2).ToList();
+            foreach (TelemarketingContact contact in contactsTaken)
+            {
+                Console.WriteLine($"Telemarketing Contact Taken: {contact}");
+            }
+            Console.ReadKey();
+        }
+
+        private void LinqSkipTest(ContactList<TelemarketingContact> contactList)
+        {
+            Console.WriteLine("Linq Skip Test...");
+            List<TelemarketingContact> contactsTaken = contactList.contacts.Skip(2).ToList();
+            foreach (TelemarketingContact contact in contactsTaken)
+            {
+                Console.WriteLine($"Telemarketing Contact Taken: {contact}");
+            }
             Console.ReadKey();
         }
     }
