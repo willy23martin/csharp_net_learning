@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 
 namespace csharp_console_app
 {
@@ -12,6 +15,46 @@ namespace csharp_console_app
             Inheritance();
             SystemObjectMethodsOverriding();
             GenericsT();
+            GenericCollections();
+        }
+
+        static void GenericCollections()
+        {
+            // To prevent boxing-unboxing computational costs.
+            Console.WriteLine($"Generic List ...");
+            List<int> genericList = new List<int>();
+            genericList.AddRange(new int[] { 10,20,30});
+            genericList.Sort();
+            foreach(int number in genericList)
+            {
+                Console.WriteLine(number);
+            }
+            Console.ReadKey();
+
+            Console.WriteLine($"Generic Stack ...");
+            Stack<string> genericStack = new Stack<string>();
+            genericStack.Push("A");
+            genericStack.Push("M");
+            genericStack.Push("O");
+            genericStack.Push("R");
+            Console.WriteLine(genericStack.Pop());
+            Console.WriteLine(genericStack.Pop());
+            Console.WriteLine(genericStack.Pop());
+            Console.WriteLine(genericStack.Pop());
+            Console.ReadKey();
+
+            Console.WriteLine($"Generic Queue ...");
+            Queue<string> genericQueue = new Queue<string>();
+            genericQueue.Enqueue("A");
+            genericQueue.Enqueue("M");
+            genericQueue.Enqueue("O");
+            genericQueue.Enqueue("R");
+            Console.WriteLine(genericQueue.Dequeue());
+            Console.WriteLine(genericQueue.Dequeue());
+            Console.WriteLine(genericQueue.Dequeue());
+            Console.WriteLine(genericQueue.Dequeue());
+            Console.ReadKey();
+
         }
 
         static void GenericsT()
@@ -36,29 +79,28 @@ namespace csharp_console_app
 
             Console.WriteLine($"ContactA was finded? {contactList.getContactInformation("90998989")}");
             Console.WriteLine($"ContactB was finded? {contactList.getContactInformation("10989")}");
-            Console.WriteLine($"Undefined Contact was finded? {contactList.getContactInformation("09")}");
-
+            
             Console.ReadKey();
 
             ContactList<TelemarketingContact> telemarketingContactList = new ContactList<TelemarketingContact>();
 
-            Contact contactC = new TelemarketingContact();
-            contactC.id = "908";
+            TelemarketingContact contactC = new TelemarketingContact();
+            contactC.telemarketing_id = "908";
             contactC.name = "Name A";
             contactC.position = new StructA(1, 1);
 
-            Contact contactD = new TelemarketingContact();
-            contactD.id = "909";
+            TelemarketingContact contactD = new TelemarketingContact();
+            contactD.telemarketing_id = "909";
             contactD.name = "Name D";
-            contactD.position = new StructA(1, 1);
+            contactD.position = new StructA(1, 2);
 
-            telemarketingContactList.Insert((TelemarketingContact)contactC);
-            telemarketingContactList.Insert((TelemarketingContact)contactD);
+            telemarketingContactList.Insert(contactC);
+            telemarketingContactList.Insert(contactD);
 
             Console.WriteLine($"ContactList: \n {telemarketingContactList}");
 
-            Console.WriteLine($"ContactA was finded? {telemarketingContactList.getContactInformation("908")}");
-            Console.WriteLine($"ContactB was finded? {telemarketingContactList.getContactInformation("909")}");
+            Console.WriteLine($"ContactC was finded? {telemarketingContactList.getContactInformation("908")}");
+            Console.WriteLine($"ContactD was finded? {telemarketingContactList.getContactInformation("909")}");
 
             Console.ReadKey();
         }
