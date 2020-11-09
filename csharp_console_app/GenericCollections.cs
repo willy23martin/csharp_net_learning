@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace csharp_console_app
                 Console.WriteLine(number);
             }
             Console.ReadKey();
+
+            
         }
 
         private void TestStack()
@@ -59,7 +62,6 @@ namespace csharp_console_app
             Console.WriteLine(genericQueue.Dequeue());
             Console.WriteLine(genericQueue.Dequeue());
             Console.WriteLine(genericQueue.Dequeue());
-            Console.ReadKey();
         }
 
         private void TestDictionary()
