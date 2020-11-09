@@ -16,5 +16,15 @@ namespace DesktopWFApp
         {
             InitializeComponent();
         }
+
+        private void Score_First_Delivery_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Click to Score the First Delivery of the Project \n -Sender: {sender} - Args: {e}");
+        }
+
+        private void Score_First_Delivery_MouseClick(object sender, MouseEventArgs e)
+        {
+            ScoreFirstDeliveryButton.BackColor = Color.AliceBlue;
+        }
     }
 }
